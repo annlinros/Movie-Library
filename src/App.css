@@ -1,0 +1,98 @@
+:root {
+  color: #fff;
+}
+
+.nav {
+  width: 100vw;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  background: #000;
+}
+
+
+
+.library {
+  background: #000;
+  color: aquamarine;
+
+}
+
+.searchBar {
+  width: 50vw;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.searchBar>* {
+  height: 50px;
+
+}
+
+.searchBtn {
+  background: #abcdef;
+  outline: none;
+  border: none;
+}
+
+.movie-item-container {
+  background-color: #fff;
+  border: 1px solid #a9a9a9;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 70vw;
+  margin: 0 auto 20px;
+  padding: 20px;
+
+}
+
+.image-container {
+  margin-right: 20px;
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+/* .movie-info>* {
+  margin-bottom: none;
+  padding: none;
+} */
+
+
+.movie-info h1 {
+  font-weight: bold;
+  font-size: 36px;
+  /* margin: 20px 0 0; */
+}
+
+.movie-info p {
+  font-size: 14px;
+  /* margin: 10px 0; */
+  /* width: 100%; */
+}
+
+.addMovieBtn {
+  color: green;
+  background: #fff;
+  outline: none;
+  /* float: right; */
+  align-items: flex-end;
+  width: 30%;
+}
+
+/* -webkit-box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2);
+box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2); */
