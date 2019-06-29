@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-
-import library_icon from "./library_icon.png";
 import Movie from "./components/Movie";
 import Library from "./components/Library";
 import Header from "./components/Header";
+import MovieSearch from "./components/MovieSearch";
+
 const API_KEY = "5093026f";
 
 class App extends Component {
@@ -42,24 +42,16 @@ class App extends Component {
       <div className="App">
         <Router>
           <Header />
-          <Route path="/library" />
-          <Route path="/movieSearch">
-            <div className="searchBar">
-              <input
-                className="searchBox"
-                type="search"
-                placeholder="Type in a movie name.."
-                onChange={this.handleChange}
+          <Route path="/library" component={Library} />
+          <Route
+            path="/search"
+            component={() => (
+              <MovieSearch
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
               />
-              <button
-                className="searchBtn"
-                type="submit"
-                onClick={this.handleSubmit}
-              >
-                GO!
-              </button>
-            </div>
-
+            )}
+          >
             {this.state.movieIDs.map(id => (
               <Movie id={id} />
             ))}

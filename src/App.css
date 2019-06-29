@@ -12,10 +12,14 @@
 
 
 
-.library {
+.libraryBtn {
   background: #000;
   color: aquamarine;
 
+}
+
+.library {
+  height: 150px;
 }
 
 .searchBar {
@@ -42,7 +46,7 @@
   border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  width: 70vw;
+  width: 50vw;
   margin: 0 auto 20px;
   padding: 20px;
 
