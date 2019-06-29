@@ -18,8 +18,9 @@
 
 }
 
-.library {
-  height: 150px;
+.libraryItem {
+  height: auto;
+  color: #000;
 }
 
 .searchBar {

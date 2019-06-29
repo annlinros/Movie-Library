@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import Movie from "./components/Movie";
+// import Movie from "./components/Movie";
 import Library from "./components/Library";
 import Header from "./components/Header";
 import MovieSearch from "./components/MovieSearch";
@@ -12,7 +12,7 @@ class App extends Component {
   state = {
     userInput: "",
     movieIDs: [],
-    movieLibrary: ["movie", "movie", "movie", "movie"]
+    movieLibrary: ["Sunrise", "Cars", "Flipped", "Iorn Man"]
   };
 
   handleSubmit = e => {
@@ -33,29 +33,32 @@ class App extends Component {
     this.setState({
       userInput: e.target.value
     });
+    console.log(this.state.userInput);
   };
 
   render() {
-    const { movieLibrary } = this.state;
+    const { movieLibrary, movieIDs } = this.state;
 
     return (
       <div className="App">
         <Router>
           <Header />
-          <Route path="/library" component={Library} />
+          <Route
+            path="/library"
+            render={() =>
+              movieLibrary.map(item => <Library movieItem={item} />)
+            }
+          />
           <Route
             path="/search"
-            component={() => (
+            render={() => (
               <MovieSearch
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
+                movieIDs={movieIDs}
               />
             )}
-          >
-            {this.state.movieIDs.map(id => (
-              <Movie id={id} />
-            ))}
-          </Route>
+          />
         </Router>
       </div>
     );
