@@ -20,7 +20,7 @@ export default function MovieSearch(props) {
         </button>
       </div>
       {props.movieIDs.map(id => (
-        <Movie id={id} key={id} />
+        <Movie id={id} key={id} libraryItem={props.libraryItem} />
       ))}
     </div>
   );

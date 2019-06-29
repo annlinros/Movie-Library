@@ -17,7 +17,10 @@ class Movie extends Component {
       })
       .catch(error => console.log(error));
   }
-
+  addToLibrary = () => {
+    this.props.libraryItem(this.state.movie.Title);
+    console.log(this.state.movie);
+  };
   render() {
     const { Poster, Year, Title, imdbRating, Plot } = this.state.movie;
 
@@ -32,10 +35,12 @@ class Movie extends Component {
         <div className="movie-info">
           <h1>{Title}</h1>
           <small>Year: {Year}</small>
-
           <h4>Rating: {imdbRating} / 10</h4>
           <p>{Plot}</p>
-          <button className="addMovieBtn"> + Add Movie</button>
+          <button className="addMovieBtn" onClick={this.addToLibrary}>
+            {" "}
+            + Add Movie
+          </button>
         </div>
       </div>
     );

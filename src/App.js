@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-// import Movie from "./components/Movie";
 import Library from "./components/Library";
 import Header from "./components/Header";
 import MovieSearch from "./components/MovieSearch";
@@ -12,7 +11,7 @@ class App extends Component {
   state = {
     userInput: "",
     movieIDs: [],
-    movieLibrary: ["Sunrise", "Cars", "Flipped", "Iorn Man"]
+    movieLibrary: []
   };
 
   handleSubmit = e => {
@@ -35,7 +34,11 @@ class App extends Component {
     });
     console.log(this.state.userInput);
   };
-
+  addLibraryItem = item => {
+    this.setState({
+      movieLibrary: [...this.state.movieLibrary, item]
+    });
+  };
   render() {
     const { movieLibrary, movieIDs } = this.state;
 
@@ -55,6 +58,7 @@ class App extends Component {
               <MovieSearch
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
+                libraryItem={this.addLibraryItem}
                 movieIDs={movieIDs}
               />
             )}
