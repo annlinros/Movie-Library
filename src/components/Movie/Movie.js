@@ -1,16 +1,17 @@
 import React, { Component } from "react";
+import "./Movie.css";
 
 class Movie extends Component {
   state = {
     movie: {}
   };
+
   componentDidMount() {
     fetch(
       `http://www.omdbapi.com/?apikey=5093026f&i=${this.props.id}&plot=short`
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         this.setState({
           movie: data
         });
@@ -18,8 +19,7 @@ class Movie extends Component {
       .catch(error => console.log(error));
   }
   addToLibrary = () => {
-    this.props.libraryItem(this.state.movie.Title);
-    console.log(this.state.movie);
+    this.props.libraryItem(this.state.movie);
   };
   render() {
     const { Poster, Year, Title, imdbRating, Plot } = this.state.movie;
@@ -34,9 +34,9 @@ class Movie extends Component {
         </div>
         <div className="movie-info">
           <h1>{Title}</h1>
-          <small>Year: {Year}</small>
-          <h4>Rating: {imdbRating} / 10</h4>
-          <p>{Plot}</p>
+          <p >Year: {Year}</p>
+          <p >Rating: {imdbRating} / 10</p>
+          <p className='plot'>{Plot}</p>
           <button className="addMovieBtn" onClick={this.addToLibrary}>
             {" "}
             + Add Movie

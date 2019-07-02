@@ -1,5 +1,6 @@
 import React from "react";
 import Movie from "./Movie";
+import "./Movie.css";
 
 export default function MovieSearch(props) {
   return (
@@ -19,9 +20,16 @@ export default function MovieSearch(props) {
           GO!
         </button>
       </div>
-      {props.movieIDs.map(id => (
-        <Movie id={id} key={id} libraryItem={props.libraryItem} />
-      ))}
+      {console.log(props.movieFound)}
+      {props.movieFound ? (
+        props.movieIDs.map(id => (
+          <Movie id={id} key={id} libraryItem={props.libraryItem} />
+        ))
+      ) : (
+        <h1 style={{ textAlign: "center", color: "black" }}>
+          Movie not found,Search again!
+        </h1>
+      )}
     </div>
   );
 }

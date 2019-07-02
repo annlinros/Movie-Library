@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import Library from "./components/Library";
-import Header from "./components/Header";
-import MovieSearch from "./components/MovieSearch";
+import Library from "./components/Library/Library";
+import Header from "./components/Header/Header.js";
+import MovieSearch from "./components/Movie/MovieSearch";
 
 const API_KEY = "5093026f";
 
@@ -11,7 +11,18 @@ class App extends Component {
   state = {
     userInput: "",
     movieIDs: [],
-    movieLibrary: []
+    movieFound: true,
+    movieLibrary: [
+      {
+        title: "Cars",
+        imdbRating: "7.1",
+        plot:
+          "A hot-shot race-car named Lightning McQueen gets waylaid in Radiator Springs, where he finds the true meaning of friendship and family.",
+        poster:
+          "https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg",
+        year: "2006"
+      }
+    ]
   };
 
   handleSubmit = e => {
@@ -19,11 +30,14 @@ class App extends Component {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-
-        this.setState({
-          movieIDs: data.Search.map(movie => movie.imdbID)
-        });
-        console.log(this.state.movieIDs);
+        data.Response === "True"
+          ? this.setState({
+            movieIDs: data.Search.map(movie => movie.imdbID),
+            movieFound: true
+            })
+          : this.setState({
+              movieFound: false
+            });
       })
       .catch(error => console.log(error));
   };
@@ -32,36 +46,48 @@ class App extends Component {
     this.setState({
       userInput: e.target.value
     });
-    console.log(this.state.userInput);
   };
-  addLibraryItem = item => {
+
+  addMovieToLibrary = movie => {
+    const newMovie = {
+      title: movie.Title,
+      year: movie.Year,
+      plot: movie.Plot,
+      poster: movie.Poster,
+      imdbRating: movie.imdbRating
+    };
+    const newMovieLibrary = [...this.state.movieLibrary];
+
+    newMovieLibrary.push(newMovie);
     this.setState({
-      movieLibrary: [...this.state.movieLibrary, item]
+      movieLibrary: [...newMovieLibrary]
     });
   };
   render() {
-    const { movieLibrary, movieIDs } = this.state;
+    const { movieLibrary, movieIDs, movieFound } = this.state;
 
     return (
       <div className="App">
         <Router>
           <Header />
           <Route
-            path="/library"
-            render={() =>
-              movieLibrary.map(item => <Library movieItem={item} />)
-            }
-          />
-          <Route
-            path="/search"
+            path="/"
+            exact
             render={() => (
               <MovieSearch
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
-                libraryItem={this.addLibraryItem}
+                libraryItem={this.addMovieToLibrary}
                 movieIDs={movieIDs}
+                movieFound={movieFound}
               />
             )}
+          />
+          <Route
+            path="/library"
+            render={() =>
+              movieLibrary.map(movie => <Library movieItem={movie} />)
+            }
           />
         </Router>
       </div>
@@ -69,13 +95,4 @@ class App extends Component {
   }
 }
 
-{
-  /* <button
-  onClick={() =>
-    movieLibrary.map(movie => <Library movie={movie} />)
-  }
->
-  Library
-</button> */
-}
 export default App;
