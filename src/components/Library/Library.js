@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function Library(props) {
-  const { poster,year, title, imdbRating, plot } = props.movieItem;
+export default function Library({movieItem}) {
+  const { poster,year, title, imdbRating, plot } = movieItem;
   return (
     <div className="movie-item-container" style={{ color: "black" }}>
       <div className="image-container">
