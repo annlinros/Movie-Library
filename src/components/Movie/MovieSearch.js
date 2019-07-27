@@ -20,7 +20,6 @@ export default function MovieSearch(props) {
           GO!
         </button>
       </div>
-      {console.log(props.movieFound)}
       {props.movieFound ? (
         props.movieIDs.map(id => (
           <Movie id={id} key={id} libraryItem={props.libraryItem} />
