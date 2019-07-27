@@ -18,9 +18,11 @@ class Movie extends Component {
       })
       .catch(error => console.log(error));
   }
+  // Add movie to the library.
   addToLibrary = () => {
     this.props.libraryItem(this.state.movie);
   };
+
   render() {
     const { Poster, Year, Title, imdbRating, Plot } = this.state.movie;
 
