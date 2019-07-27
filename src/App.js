@@ -12,17 +12,7 @@ class App extends Component {
     userInput: "",
     movieIDs: [],
     movieFound: true,
-    movieLibrary: [
-      {
-        title: "Cars",
-        imdbRating: "7.1",
-        plot:
-          "A hot-shot race-car named Lightning McQueen gets waylaid in Radiator Springs, where he finds the true meaning of friendship and family.",
-        poster:
-          "https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg",
-        year: "2006"
-      }
-    ]
+    movieLibrary: [] 
   };
 
   handleSubmit = e => {
